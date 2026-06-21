@@ -5,3 +5,12 @@ edition     = "2024"
 authors     = ["Tarcisio Oliveira <t@rcis.io>"]
 description = "The hallucinator machine."
 publish     = false
+
+[lib]
+crate-type = [
+    # Produces the WASM binary for the browser.
+    "cdylib",
+
+    # Allows the server binary and tests to link against the same code.
+    "rlib",
+]
