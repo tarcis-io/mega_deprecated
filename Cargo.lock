@@ -844,8 +844,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "300e883d756b2e4ec94e02791f39b04b522276138852cfc41d9fb7e904106099"
 dependencies = [
  "cfg-if",
+ "js-sys",
  "libc",
  "r-efi 6.0.0",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -1692,9 +1694,11 @@ dependencies = [
  "codee",
  "cookie",
  "default-struct-builder",
+ "http",
  "js-sys",
  "lazy_static",
  "leptos",
+ "leptos_axum",
  "paste",
  "send_wrapper",
  "thiserror 2.0.18",
@@ -1787,11 +1791,13 @@ dependencies = [
  "icu_list",
  "icu_locale",
  "icu_plurals",
+ "js-sys",
  "leptos",
  "leptos-use",
  "leptos_i18n_macro",
  "leptos_meta",
  "serde",
+ "serde-wasm-bindgen",
  "typed-builder",
  "wasm-bindgen",
  "writeable",
@@ -2789,6 +2795,17 @@ checksum = "f3a1a3341211875ef120e117ea7fd5228530ae7e7036a779fdc9117be6b3282c"
 dependencies = [
  "ordered-float",
  "serde",
+]
+
+[[package]]
+name = "serde-wasm-bindgen"
+version = "0.6.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8302e169f0eddcc139c70f139d19d6467353af16f9fce27e8c30158036a1e16b"
+dependencies = [
+ "js-sys",
+ "serde",
+ "wasm-bindgen",
 ]
 
 [[package]]

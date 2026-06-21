@@ -42,3 +42,51 @@ wasm-bindgen             = { version = "0.2.125", optional = true }
 [build-dependencies]
 # Required to generate type-safe localization modules prior to the main compilation.
 leptos_i18n_build = { version = "0.6.2" }
+
+[features]
+# Enables server-side rendering logic and pulls in the server-only dependencies.
+ssr = [
+    "dep:axum",
+    "dep:leptos_axum",
+    "dep:tokio",
+    "dep:tower-http",
+    "dep:tracing-subscriber",
+    "leptos/ssr",
+    "leptos_i18n/axum",
+    "leptos_i18n_build/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr",
+]
+
+# Enables client-side hydration logic and pulls in browser-specific dependencies and WASM bindings.
+hydrate = [
+    "dep:console_error_panic_hook",
+    "dep:tracing-wasm",
+    "dep:wasm-bindgen",
+    "leptos/hydrate",
+    "leptos_i18n/hydrate",
+    "leptos_i18n_build/hydrate",
+]
+
+[profile.release]
+opt-level = 3
+
+[profile.wasm-release]
+# Aggressively optimizes the WASM binary for minimal payload size over compile times.
+inherits      = "release"
+opt-level     = "z"
+lto           = true
+codegen-units = 1
+panic         = "abort"
+strip         = true
+
+[package.metadata.leptos]
+# Instructs the cargo-leptos CLI on how to orchestrate the dual-target build and asset bundling.
+output-name            = "mega"
+bin-features           = ["ssr"]
+lib-features           = ["hydrate"]
+lib-profile-release    = "wasm-release"
+assets-dir             = "assets"
+site-root              = "target/site"
+site-pkg-dir           = "pkg"
+watch-additional-files = ["assets/locales"]
