@@ -1,7 +1,7 @@
 //! Build script.
 //!
 //! It programmatically configures and generates the type-safe localization module
-//! directly into the Cargo build output directory.
+//! into the `i18n/` subdirectory of the Cargo build output directory.
 
 use leptos_i18n_build::{Config, FileFormat, ParseOptions, TranslationsInfos};
 use std::{env::var_os, error::Error, path::PathBuf};
@@ -21,6 +21,11 @@ use std::{env::var_os, error::Error, path::PathBuf};
 ///
 /// Returns an error if the translation files fail to parse, if the specified locales are invalid,
 /// or if the generated module cannot be written to disk.
+///
+/// # Panics
+///
+/// Panics if the `OUT_DIR` environment variable is not set,
+/// which typically only occurs if the build script is executed directly outside of Cargo.
 fn main() -> Result<(), Box<dyn Error>> {
     let parse_options = ParseOptions::default().file_format(FileFormat::Toml);
 
