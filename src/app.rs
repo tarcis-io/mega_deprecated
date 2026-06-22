@@ -6,6 +6,6 @@ pub fn App() -> impl IntoView {
 }
 
 #[cfg(feature = "ssr")]
-pub fn shell() -> impl IntoView {
+pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {}
 }
