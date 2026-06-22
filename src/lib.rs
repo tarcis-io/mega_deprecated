@@ -26,12 +26,16 @@ include!(concat!(env!("OUT_DIR"), "/i18n/mod.rs"));
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
     use app::App;
-    use console_error_panic_hook::set_once;
     use leptos::mount::hydrate_body;
-    use tracing_wasm::set_as_global_default;
 
-    set_once();
-    set_as_global_default();
+    #[cfg(debug_assertions)]
+    {
+        use console_error_panic_hook::set_once;
+        use tracing_wasm::set_as_global_default;
+
+        set_once();
+        set_as_global_default();
+    }
 
     hydrate_body(App);
 }
