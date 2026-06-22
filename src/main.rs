@@ -22,7 +22,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use mega::app::{App, shell};
     use tokio::net::TcpListener;
     use tower_http::services::ServeDir;
-    use tracing::info;
     use tracing_subscriber::fmt::init;
 
     init();
@@ -47,8 +46,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_state(options);
 
     let tcp_listener = TcpListener::bind(site_addr).await?;
-    info!("Listening on http://{site_addr}");
-
     serve(tcp_listener, router).await?;
 
     Ok(())
