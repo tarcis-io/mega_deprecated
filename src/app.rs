@@ -3,7 +3,14 @@
 //! This module provides the root component, routing configuration,
 //! and the server-side rendering (SSR) shell for the application.
 
+use crate::components::UIShell;
+use crate::features::{Home, NotFound};
 use leptos::prelude::*;
+use leptos_meta::{Meta, Title, provide_meta_context};
+use leptos_router::{
+    components::{FlatRoutes, Route, Router},
+    path,
+};
 
 /// Renders the full HTML document shell for server-side rendering (SSR).
 ///
@@ -42,5 +49,19 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 /// mounts the router, and declares all top-level routes.
 #[component]
 pub fn App() -> impl IntoView {
-    view! {}
+    provide_meta_context();
+
+    view! {
+        <Title text="Mega" />
+        <Meta name="description" content="The hallucinator machine." />
+
+        <Router>
+            <UIShell>
+                <FlatRoutes fallback=NotFound>
+                    <Route path=path!("/") view=Home />
+                    <Route path=path!("/*path") view=NotFound />
+                </FlatRoutes>
+            </UIShell>
+        </Router>
+    }
 }
