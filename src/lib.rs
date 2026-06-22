@@ -7,6 +7,9 @@
 //! and, when compiled for WASM, provides the entry point to hydrate the client application.
 
 pub mod app;
+pub mod components;
+pub mod features;
+pub mod helpers;
 
 include!(concat!(env!("OUT_DIR"), "/i18n/mod.rs"));
 
