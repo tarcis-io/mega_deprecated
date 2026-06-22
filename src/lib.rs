@@ -6,6 +6,8 @@
 //! It declares all primary top-level modules
 //! and, when compiled for WASM, provides the entry point to hydrate the client application.
 
+pub mod app;
+
 include!(concat!(env!("OUT_DIR"), "/i18n/mod.rs"));
 
 /// The main entry point for the WebAssembly client bundle.
@@ -20,9 +22,13 @@ include!(concat!(env!("OUT_DIR"), "/i18n/mod.rs"));
 #[cfg(all(target_arch = "wasm32", feature = "hydrate"))]
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
+    use app::App;
     use console_error_panic_hook::set_once;
+    use leptos::mount::hydrate_body;
     use tracing_wasm::set_as_global_default;
 
     set_once();
     set_as_global_default();
+
+    hydrate_body(App);
 }
