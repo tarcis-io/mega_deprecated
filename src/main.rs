@@ -15,7 +15,7 @@
 /// Only compiled when the `ssr` feature is enabled.
 #[cfg(feature = "ssr")]
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use axum::{Router, serve};
     use leptos::prelude::*;
     use leptos_axum::{LeptosRoutes, generate_route_list};
@@ -27,7 +27,7 @@ async fn main() {
 
     init();
 
-    let configuration = get_configuration(None).unwrap();
+    let configuration = get_configuration(None)?;
     let options = configuration.leptos_options;
 
     let site_addr = options.site_addr;
@@ -46,10 +46,12 @@ async fn main() {
         .fallback_service(fallback_service)
         .with_state(options);
 
-    let tcp_listener = TcpListener::bind(site_addr).await.unwrap();
+    let tcp_listener = TcpListener::bind(site_addr).await?;
     info!("Listening on http://{site_addr}");
 
-    serve(tcp_listener, router).await.unwrap();
+    serve(tcp_listener, router).await?;
+
+    Ok(())
 }
 
 /// A stub entry point for the non-SSR feature build.
