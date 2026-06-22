@@ -15,7 +15,25 @@ use leptos::prelude::*;
 /// Only compiled when the `ssr` feature is enabled.
 #[cfg(feature = "ssr")]
 pub fn shell(options: LeptosOptions) -> impl IntoView {
-    view! {}
+    use leptos_meta::MetaTags;
+
+    view! {
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+                <MetaTags />
+
+                <AutoReload options=options.clone() />
+                <HydrationScripts options />
+            </head>
+            <body>
+                <App />
+            </body>
+        </html>
+    }
 }
 
 /// Root application component.
