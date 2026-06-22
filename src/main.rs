@@ -1,7 +1,7 @@
 //! Server application entry point.
 //!
 //! It bootstraps the web server, configures the server-side rendering (SSR),
-//! and serves the static files required for the WebAssembly client hydration.
+//! and serves the static files required for the WebAssembly (WASM) client hydration.
 
 /// The main entry point for the server executable.
 ///

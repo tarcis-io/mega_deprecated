@@ -13,7 +13,7 @@ pub mod helpers;
 
 include!(concat!(env!("OUT_DIR"), "/i18n/mod.rs"));
 
-/// The main entry point for the WebAssembly client bundle.
+/// The main entry point for the WebAssembly (WASM) client bundle.
 ///
 /// It installs the panic hook, initializes tracing, and hydrates the Leptos application
 /// by attaching client-side reactivity and event listeners to the static HTML previously rendered by the server.
