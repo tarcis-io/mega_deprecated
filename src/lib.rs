@@ -1,6 +1,6 @@
 //! Shared application library and module registry.
 //!
-//! This module is compiled into both the server binary for Server-Side Rendering (SSR)
+//! This module is compiled into both the server binary for server-side rendering (SSR)
 //! and the WebAssembly (WASM) client.
 //!
 //! It declares all primary top-level modules

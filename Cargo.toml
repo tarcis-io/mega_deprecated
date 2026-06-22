@@ -44,7 +44,7 @@ wasm-bindgen             = { version = "0.2.125", optional = true }
 leptos_i18n_build = { version = "0.6.2" }
 
 [features]
-# Enables server-side rendering logic and pulls in the server-only dependencies.
+# Enables server-side rendering (SSR) logic and pulls in the server-only dependencies.
 ssr = [
     "dep:axum",
     "dep:leptos_axum",
