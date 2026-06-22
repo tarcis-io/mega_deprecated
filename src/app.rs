@@ -20,7 +20,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 
 /// Root application component.
 ///
-/// It initializes the meta context required for modyfing the document's head,
+/// It initializes the meta context required for modifying the document's head,
 /// mounts the router, and declares all top-level routes.
 #[component]
 pub fn App() -> impl IntoView {
