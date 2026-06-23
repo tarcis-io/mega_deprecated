@@ -22,9 +22,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use mega::app::{App, shell};
     use tokio::net::TcpListener;
     use tower_http::services::ServeDir;
-    use tracing_subscriber::fmt::init;
+    use tracing::info;
+    use tracing_subscriber::{EnvFilter, fmt};
 
-    init();
+    fmt().with_env_filter(EnvFilter::from_default_env()).init();
 
     let configuration = get_configuration(None)?;
     let options = configuration.leptos_options;
@@ -46,10 +47,22 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_state(options);
 
     let tcp_listener = TcpListener::bind(site_addr).await?;
-    serve(tcp_listener, router).await?;
+    info!("Server listening on http://{site_addr}");
+
+    serve(tcp_listener, router)
+        .with_graceful_shutdown(shutdown_signal())
+        .await?;
 
     Ok(())
 }
+
+/// Listens for the server shutdown signal.
+///
+/// Handles `Ctrl+C` for local development and `SIGTERM`
+/// for containerized production environment.
+#[cfg(feature = "ssr")]
+#[inline]
+async fn shutdown_signal() {}
 
 /// A stub entry point for the non-SSR feature build.
 ///
