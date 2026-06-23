@@ -30,9 +30,9 @@ thiserror     = { version = "2.0.18"  }
 # Server-only integrations to handle routing, static files, and async runtime.
 axum               = { version = "0.8.9",  optional = true }
 leptos_axum        = { version = "0.8.9",  optional = true }
-tokio              = { version = "1.52.3", optional = true, features = ["full"] }
-tower-http         = { version = "0.7.0",  optional = true, features = ["fs"]   }
-tracing-subscriber = { version = "0.3.23", optional = true }
+tokio              = { version = "1.52.3", optional = true, features = ["full"]       }
+tower-http         = { version = "0.7.0",  optional = true, features = ["fs"]         }
+tracing-subscriber = { version = "0.3.23", optional = true, features = ["env-filter"] }
 
 # Browser-specific APIs, WASM bindings, and debugging utilities.
 console_error_panic_hook = { version = "0.1.7",   optional = true }
