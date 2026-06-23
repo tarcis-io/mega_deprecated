@@ -62,7 +62,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// for containerized production environment.
 #[cfg(feature = "ssr")]
 #[inline]
-async fn shutdown_signal() {}
+async fn shutdown_signal() {
+    use tokio::{select, signal::ctrl_c};
+    use tracing::info;
+
+    let ctrl_c_handler = async {
+        ctrl_c().await.expect("Failed to install Ctrl+C handler");
+    };
+
+    select! {
+        _ = ctrl_c_handler => {
+            info!("Server received Ctrl+C signal, initiating graceful shutdown...");
+        }
+    }
+}
 
 /// A stub entry point for the non-SSR feature build.
 ///
