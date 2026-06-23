@@ -3,8 +3,8 @@
 //! This module is compiled into both the server binary for server-side rendering (SSR)
 //! and the WebAssembly (WASM) client.
 //!
-//! It declares all primary top-level modules
-//! and, when compiled for WASM, provides the entry point to hydrate the client application.
+//! It declares all primary top-level modules and, when compiled for WASM with the `hydrate` feature enabled,
+//! provides the entry point to hydrate the client application.
 
 pub mod app;
 pub mod components;
