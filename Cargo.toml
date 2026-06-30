@@ -17,10 +17,10 @@ crate-type = [
 
 [dependencies]
 # Core framework utilities compiled into both the server binary and WASM client.
-leptos        = { version = "0.8.19"  }
+leptos        = { version = "0.8.20"  }
 leptos_i18n   = { version = "0.6.2"   }
 leptos_meta   = { version = "0.8.6"   }
-leptos_router = { version = "0.8.13"  }
+leptos_router = { version = "0.8.14"  }
 serde         = { version = "1.0.228", features = ["derive"] }
 serde_json    = { version = "1.0.150" }
 strum         = { version = "0.28.0"  }
@@ -29,7 +29,7 @@ thiserror     = { version = "2.0.18"  }
 
 # Server-only integrations to handle routing, static files, and async runtime.
 axum               = { version = "0.8.9",  optional = true }
-leptos_axum        = { version = "0.8.9",  optional = true }
+leptos_axum        = { version = "0.8.10", optional = true }
 tokio              = { version = "1.52.3", optional = true, features = ["full"]       }
 tower-http         = { version = "0.7.0",  optional = true, features = ["fs"]         }
 tracing-subscriber = { version = "0.3.23", optional = true, features = ["env-filter"] }
@@ -37,7 +37,7 @@ tracing-subscriber = { version = "0.3.23", optional = true, features = ["env-fil
 # Browser-specific APIs, WASM bindings, and debugging utilities.
 console_error_panic_hook = { version = "0.1.7",   optional = true }
 tracing-wasm             = { version = "0.2.1",   optional = true }
-wasm-bindgen             = { version = "0.2.125", optional = true }
+wasm-bindgen             = { version = "0.2.126", optional = true }
 
 [build-dependencies]
 # Required to generate type-safe localization modules prior to the main compilation.
