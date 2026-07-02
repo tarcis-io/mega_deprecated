@@ -3,14 +3,15 @@
 //! This module provides the root component, routing configuration,
 //! and the server-side rendering (SSR) shell for the application.
 
-use crate::components::UIShell;
-use crate::features::{Home, NotFound};
 use leptos::prelude::*;
 use leptos_meta::{Meta, Title, provide_meta_context};
 use leptos_router::{
     components::{FlatRoutes, Route, Router},
     path,
 };
+
+use crate::components::UIShell;
+use crate::features::{Home, NotFound};
 
 /// Renders the full HTML document shell for server-side rendering (SSR).
 ///
