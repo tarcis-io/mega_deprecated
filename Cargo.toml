@@ -17,15 +17,14 @@ crate-type = [
 
 [dependencies]
 # Core framework utilities compiled into both the server binary and WASM client.
-leptos        = { version = "0.8.20"  }
-leptos_i18n   = { version = "0.6.2"   }
-leptos_meta   = { version = "0.8.6"   }
-leptos_router = { version = "0.8.14"  }
+leptos        = { version = "0.8.20" }
+leptos_i18n   = { version = "0.6.2"  }
+leptos_meta   = { version = "0.8.6"  }
+leptos_router = { version = "0.8.14" }
 serde         = { version = "1.0.228", features = ["derive"] }
-serde_json    = { version = "1.0.150" }
-strum         = { version = "0.28.0"  }
-tracing       = { version = "0.1.44"  }
-thiserror     = { version = "2.0.18"  }
+strum         = { version = "0.28.0" }
+tracing       = { version = "0.1.44" }
+thiserror     = { version = "2.0.18" }
 
 # Server-only integrations to handle routing, static files, and async runtime.
 axum               = { version = "0.8.9",  optional = true }
