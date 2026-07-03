@@ -1,8 +1,29 @@
 # Mega
 The hallucinator machine.
 
+---
 
 sudo apt-get install build-essential libnspr4 libnss3 -y
+
+---
+
+wget https://go.dev/dl/go1.26.4.linux-amd64.tar.gz
+
+tar -xvf go1.26.4.linux-amd64.tar.gz
+
+rm -rf go1.26...
+
+mkdir .go
+
+printf "\nexport GOROOT=\$HOME/go\n" >> .bashrc
+
+printf "export GOPATH=\$HOME/.go\n" >> .bashrc
+
+printf "export PATH=\$PATH:\$GOROOT/bin\n" >> .bashrc
+
+---
+
+
 
 install rust
 rustup target add wasm32-unknown-unknown
