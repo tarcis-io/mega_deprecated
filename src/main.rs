@@ -68,12 +68,28 @@ async fn shutdown_signal() {
     use tracing::info;
 
     let ctrl_c_handler = async {
-        ctrl_c().await.expect("Failed to install Ctrl+C handler");
+        ctrl_c()
+            .await
+            .expect("Failed to install Ctrl+C signal handler");
     };
+
+    #[cfg(unix)]
+    let terminate_handler = async {
+        tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+            .expect("Failed to install SIGTERM signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate_handler = std::future::pending::<()>();
 
     select! {
         _ = ctrl_c_handler => {
             info!("Server received Ctrl+C signal, initiating graceful shutdown...");
+        },
+        _ = terminate_handler => {
+            info!("Server received SIGTERM signal, initiating graceful shutdown...")
         }
     }
 }
