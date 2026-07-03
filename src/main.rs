@@ -19,11 +19,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use axum::{Router, serve};
     use leptos::prelude::*;
     use leptos_axum::{LeptosRoutes, generate_route_list};
-    use mega::app::{App, shell};
     use tokio::net::TcpListener;
     use tower_http::services::ServeDir;
     use tracing::info;
     use tracing_subscriber::{EnvFilter, fmt};
+
+    use mega::app::{App, shell};
 
     fmt().with_env_filter(EnvFilter::from_default_env()).init();
 
