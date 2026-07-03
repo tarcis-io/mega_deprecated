@@ -24,18 +24,21 @@ use std::{env::var_os, error::Error, path::PathBuf};
 ///
 /// # Panics
 ///
-/// Panics if the `OUT_DIR` environment variable is not set,
-/// which typically only occurs if the build script is executed directly outside of Cargo.
+/// Panics if the `CARGO_MANIFEST_DIR` or `OUT_DIR` environment variables are not set.
+/// This typically only occurs if the build script is executed directly outside of Cargo.
 fn main() -> Result<(), Box<dyn Error>> {
+    let manifest_dir = var_os("CARGO_MANIFEST_DIR").expect("Failed to fetch CARGO_MANIFEST_DIR");
+    let locales_path = PathBuf::from(manifest_dir).join("assets/locales");
+
     let parse_options = ParseOptions::default().file_format(FileFormat::Toml);
 
     let config = Config::new("en")?
         .add_locale("es")?
         .add_locale("pt")?
-        .locales_path("./assets/locales")
+        .locales_path(locales_path)
         .parse_options(parse_options);
 
-    let out_dir = var_os("OUT_DIR").expect("Failed to fetch OUT_DIR environment variable");
+    let out_dir = var_os("OUT_DIR").expect("Failed to fetch OUT_DIR");
     let i18n_module_directory = PathBuf::from(out_dir).join("i18n");
 
     let translations_infos = TranslationsInfos::parse(config)?;
