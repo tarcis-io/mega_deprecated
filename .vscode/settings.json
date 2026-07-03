@@ -1,0 +1,34 @@
+{
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    },
+    "breadcrumbs.enabled": false,
+    "css.validate": false,
+    "editor.codeLens": false,
+    "editor.colorDecorators": false,
+    "editor.folding": false,
+    "editor.formatOnSave": false,
+    "editor.inlayHints.enabled": "off",
+    "editor.lightbulb.enabled": "off",
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "evenBetterToml.formatter.alignEntries": true,
+    "evenBetterToml.formatter.arrayAutoCollapse": false,
+    "evenBetterToml.formatter.arrayAutoExpand": false,
+    "explorer.compactFolders": false,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    // --- WebAssembly ---
+    "rust-analyzer.cargo.target": "wasm32-unknown-unknown",
+    "rust-analyzer.check.allTargets": false,
+    // ---
+    // --- Native ---
+    //"rust-analyzer.cargo.target": null,
+    //"rust-analyzer.check.allTargets": true,
+    // ---
+    "rust-analyzer.check.ignore": [
+        "dead_code"
+    ],
+    "rust-analyzer.cargo.features": "all",
+    "workbench.tree.indent": 12
+}
