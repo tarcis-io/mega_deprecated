@@ -15,11 +15,13 @@ rm -rf go1.26...
 
 mkdir .go
 
-printf "\nexport GOROOT=\$HOME/go\n" >> .bashrc
+.bashrc:
 
-printf "export GOPATH=\$HOME/.go\n" >> .bashrc
+export GOROOT=$HOME/go
 
-printf "export PATH=\$PATH:\$GOROOT/bin\n" >> .bashrc
+export GOPATH=$HOME/.go
+
+export PATH=$PATH:$GOROOT/bin
 
 ---
 
