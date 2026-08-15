@@ -32,3 +32,30 @@
     "rust-analyzer.cargo.features": "all",
     "workbench.tree.indent": 12
 }
+
+
+
+
+{
+	"breadcrumbs.enabled": false,
+	"css.validate": false,
+	"editor.codeLens": false,
+	"editor.colorDecorators": false,
+	"editor.detectIndentation": false,
+	"editor.folding": false,
+	"editor.inlayHints.enabled": "off",
+	"editor.insertSpaces": false,
+	"editor.lightbulb.enabled": "off",
+	"editor.minimap.enabled": false,
+	"editor.stickyScroll.enabled": false,
+	"explorer.compactFolders": false,
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"go.toolsEnvVars": {
+		"GOOS": "js",
+		"GOARCH": "wasm"
+	},
+	"html.format.indentInnerHtml": true,
+	"javascript.validate.enable": false,
+	"workbench.tree.indent": 12
+}
