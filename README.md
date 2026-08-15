@@ -21,6 +21,8 @@ mkdir bin
 
 wget https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-arm64 -O bin/tailwindcss
 
+chmod +x bin/tailwindcss
+
 ---
 
 .bashrc:
@@ -29,7 +31,7 @@ export GOROOT=$HOME/go
 
 export GOPATH=$HOME/.go
 
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$HOME/bin:$GOROOT/bin
 
 ---
 
