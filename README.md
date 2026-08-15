@@ -15,6 +15,14 @@ rm -rf go1.26...
 
 mkdir .go
 
+---
+
+mkdir bin
+
+wget https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-arm64 -O bin/tailwindcss
+
+---
+
 .bashrc:
 
 export GOROOT=$HOME/go
