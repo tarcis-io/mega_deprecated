@@ -46,3 +46,52 @@ sudo apt install ./vscode.deb
 rm -rf vscode.deb
 
 ---
+
+func Run(cfg *config.Config) error {
+	// 1. Initialization
+	// Set up the router and server before binding to any OS signals.
+	router, err := newRouter()
+	if err != nil {
+		return err
+	}
+
+	srv := newServer(cfg, router)
+
+	// 2. Signal Context
+	// Intercept OS signals (e.g., Ctrl+C, Docker stop) to initiate graceful shutdown.
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer cancel()
+
+	// 3. Server Execution
+	// errCh is buffered to 1 to ensure the goroutine doesn't block if the main thread has already exited.
+	errCh := make(chan error, 1)
+	
+	go func() {
+		log.Printf("server listening on %s", srv.Addr)
+		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			errCh <- err
+		}
+	}()
+
+	// 4. Wait for Termination
+	// Block here until the server crashes OR the OS sends an interrupt signal.
+	select {
+	case err := <-errCh:
+		return fmt.Errorf("server error: %w", err)
+	case <-ctx.Done():
+		log.Println("shutdown signal received")
+	}
+
+	// 5. Graceful Teardown
+	// The code reaches here only if ctx.Done() was triggered.
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), cfg.Server.ShutdownTimeout)
+	defer shutdownCancel()
+
+	if err := srv.Shutdown(shutdownCtx); err != nil {
+		return fmt.Errorf("graceful shutdown failed: %w", err)
+	}
+
+	log.Println("server stopped cleanly")
+	return nil
+}
+---
