@@ -3,7 +3,7 @@ The hallucinator machine.
 
 ---
 
-sudo apt-get install build-essential libnspr4 libnss3 -y
+sudo apt-get install build-essential libnspr4 libnss3 clang cmake ninja-build pkg-config -y
 
 ---
 
