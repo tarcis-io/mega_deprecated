@@ -3,7 +3,7 @@ The hallucinator machine.
 
 ---
 
-sudo apt-get install build-essential libnspr4 libnss3 clang cmake ninja-build pkg-config -y
+sudo apt-get install build-essential libnspr4 libnss3 clang cmake ninja-build pkg-config libgtk-3-dev mesa-utils -y
 
 ---
 
@@ -27,7 +27,15 @@ chmod +x bin/tailwindcss
 
 wget android.studio.deb
 
-sudo dpkg -i android.studio.deb
+sudo apt-get install ./android.studio.deb
+
+//sudo dpkg -i android.studio.deb
+
+---
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+sudo apt install ./google-chrome-stable_current_amd64.deb
 
 ---
 
