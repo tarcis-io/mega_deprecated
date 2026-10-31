@@ -25,6 +25,12 @@ chmod +x bin/tailwindcss
 
 ---
 
+wget android.studio.deb
+
+sudo dpkg -i android.studio.deb
+
+---
+
 .bashrc:
 
 export GOROOT=$HOME/go
