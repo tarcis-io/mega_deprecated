@@ -3,7 +3,7 @@ The hallucinator machine.
 
 ---
 
-sudo apt-get install build-essential libnspr4 libnss3 clang cmake ninja-build pkg-config libgtk-3-dev mesa-utils -y
+sudo apt-get install build-essential libnspr4 libnss3 clang cmake ninja-build pkg-config libgtk-3-dev mesa-utils curl git unzip xz-utils zip libglu1-mesa -y
 
 ---
 
